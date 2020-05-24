@@ -7,16 +7,15 @@ import (
 )
 
 var (
-	dataChan   = make(chan int, 10000)
+	dataChan = make(chan int, 10000000)
 	// 使用通道存储结果而不是切片或者数组， 因为通道是并发安全的
-	resultChan = make(chan int, 10000)
+	resultChan = make(chan int, 1000000)
 	wg         = sync.WaitGroup{}
 )
 
 // 通过协程的方式， 求一个 1-10000 中哪些数是素数
 func main() {
-
-	go putNum(10000)
+	go putNum(10000000)
 	for i := 0; i < 4; i++ {
 		wg.Add(1)
 		go consume()
@@ -55,7 +54,7 @@ func consume() {
 			return
 		}
 		if isPrime(number) {
-			fmt.Println("素数", number)
+			//fmt.Println("素数", number)
 			resultChan <- number
 		}
 	}
