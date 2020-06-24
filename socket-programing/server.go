@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"net"
+	"time"
 )
 
 func main() {
@@ -11,5 +13,22 @@ func main() {
 	if err != nil {
 		log.Fatalf("err: %s", err)
 	}
-	fmt.Println(listener.Accept())
+	defer listener.Close()
+
+	c, err := listener.Accept()
+	if err != nil {
+		fmt.Println(err)
+	}
+	for {
+		n, err := bufio.NewReader(c).ReadString('\n')
+		 //c.Read(buffer)
+		 fmt.Println("收到消息")
+		fmt.Println(n)
+		if err != nil {
+			fmt.Println(err)
+		}
+		time.Sleep(time.Second)
+	}
+
+
 }

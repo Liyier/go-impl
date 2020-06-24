@@ -11,6 +11,7 @@ func init()  {
 	if err := env.Parse(&config); err != nil {
 		fmt.Println(err)
 	}
+	fmt.Println(config.getConnString())
 }
 
 // rabbitmq 连接配置

@@ -12,6 +12,7 @@ type Client struct {
 }
 
 func NewClient() *Client {
+	fmt.Println(config.getConnString())
 	return &Client{Config: config}
 }
 
@@ -57,7 +58,7 @@ func (c *Client) Publish() error {
 
 	err = channel.ExchangeDeclare(
 		"exchangeName", // name of the exchange
-		"direct",       // type
+		"topic",       // type
 		true,           // durable
 		false,          // delete when complete
 		false,          // internal
@@ -76,11 +77,11 @@ func (c *Client) Publish() error {
 		false,                       // noWait
 		nil, // arguments
 	)
-	_ = channel.QueueBind("queueName", "routingkey", "exchangeName", false, nil)
+	_ = channel.QueueBind("queueName", "routingkey.#", "exchangeName", false, nil)
 
 	err = channel.Publish(
 		"exchangeName",
-		"routingkey",
+		"routingkey.com",
 		false,
 		false,
 		amqp.Publishing{
