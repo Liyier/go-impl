@@ -7,6 +7,7 @@ require (
 	github.com/ThreeDotsLabs/watermill-amqp v1.0.3
 	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/go-resty/resty/v2 v2.3.0
+	github.com/golang/mock v1.4.3 // indirect
 	github.com/gomodule/redigo v1.8.2
 	github.com/guonaihong/gout v0.0.12
 	github.com/streadway/amqp v0.0.0-20200108173154-1c71cc93ed71

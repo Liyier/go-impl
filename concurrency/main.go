@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	concurrencyWriteMap()
+	//concurrencyWriteMap()
+	concurrencyReadMap()
 }
 
 // 测试 map 的 并发写入
@@ -32,6 +33,8 @@ func concurrencyWriteMap()  {
 	fmt.Println(len(m))
 }
 
+
+// 仅仅并发读不会出现问题
 func concurrencyReadMap() {
 	var (
 		m = map[string]string{"key1":"value", "key2":"value"}
