@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	net.ListenUDP()
 	listener, err := net.Listen("tcp", ":8080")
 	if err != nil {
 		log.Fatalf("err: %s", err)
